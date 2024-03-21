@@ -14,8 +14,7 @@ function HomeMainSection() {
     <main>
         <div className="about-us">
             <h1>About Us</h1>
-            <p>Welcome to our online store! We are passionate about providing high-quality products and exceptional customer service. Laern more about our story and commitment to your statisfaction</p>
-            <Link to="/products">
+            <p>Welcome to our online store! We are passionate about providing high-quality products and exceptional customer service. Learn more about our story and commitment to your satisfaction.</p>            <Link to="/products">
                 <button>Shop Now</button>
             </Link>
         </div>
