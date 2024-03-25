@@ -16,3 +16,30 @@
     justify-content: space-between;
     width: 100%;
 }
+.ProductList-td
+{
+    width: 80%;
+}
+.cartItems-td
+{
+    width: 20%;
+}
+
+.product-img {
+    width: auto;
+    height: 200px;
+}
+
+.Product-cart {
+    width: 100%;
+}
+
+.cart-item-img {
+    width: auto;
+    height: 200px;
+}
+.Total-Price
+{
+    font-size: 20px;
+    font-weight: bold;
+}
