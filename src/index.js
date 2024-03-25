@@ -1,5 +1,5 @@
 // Hongwoo Yoon, 30113779
-// Steve(Hyunmyung) Park,  
+// Steve(Hyunmyung) Park, 30067689
 
 import React from 'react';
 import ReactDOM from 'react-dom';
