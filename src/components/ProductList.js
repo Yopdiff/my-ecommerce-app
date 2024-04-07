@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ProductItem from './ProductItem';
 
 function ProductList({ addToCart }) {
   const [products, setProducts] = useState([]);
@@ -12,12 +13,13 @@ function ProductList({ addToCart }) {
   return (
     <div>
       {products.map(product => (
-        <div key={product.id}>
-         <h2>{product.name}</h2>
-          <p>{product.description}</p>
-          <p>${product.price}</p>
-          <button onClick={() => addToCart(product)}>Add to Cart</button>
-        </div>
+        <ProductItem key={product.id} product={product} addToCart={addToCart} />
+        // <div key={product.id}>
+        // <h2>{product.name}</h2>
+        // <p>{product.description}</p>
+        // <p>${product.price}</p>
+        // <button onClick={() => addToCart(product)}>Add to Cart</button>
+        // </div>
       ))}
     </div>
   );
