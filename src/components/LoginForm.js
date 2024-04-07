@@ -15,6 +15,18 @@ function LoginForm() {
         }
     };
 
+    const submitLogin = async () => {
+        try 
+        {
+            localStorage.setItem('Token', json.user.token);
+            localStorage.setItem('accountname', json.user.accountname);
+        }
+        catch (err) {
+            setError(true)
+            console.error(err);
+        }
+    };
+
     const handleSignup = (e) => {
         e.preventDefault();
         if (username && password && confirmPassword && email && password !== confirmPassword) {
