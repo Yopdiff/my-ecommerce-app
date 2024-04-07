@@ -3,7 +3,6 @@ import Header from './Header';
 import Footer from './Footer';
 import ProductList from './ProductList';
 import Cart from './Cart';
-import product from '../data/products';
 
 const ProductPage = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -49,7 +48,7 @@ const ProductPage = () => {
         <Header />
         <table className='Product-cart'>
             <tr>
-                <td className='ProductList-td'><ProductList products={product} addToCart={addToCart}/></td>
+                <td className='ProductList-td'><ProductList addToCart={addToCart}/></td>
                 <td className='cartItems-td' style={{verticalAlign:"top"}}> <Cart cartItems={cartItems} removeFromCart={removeFromCart}/> </td>
             </tr>
         </table>
