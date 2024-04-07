@@ -1,6 +1,8 @@
 from flask import Flask, redirect, request, jsonify, url_for
+from flask_cors import CORS #import Cors
 
 app = Flask(__name__)
+CORS(app) #enable Cors
 
 users = []
 products = [ 
