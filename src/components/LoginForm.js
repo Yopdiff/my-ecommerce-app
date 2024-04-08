@@ -1,33 +1,46 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function LoginForm() {
-    const [isLogin, setIsLogin] = useState(true);
+function LoginForm(props) {
+    const [isLoginPage, setIsLoginPage] = useState(true);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [email, setEmail] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
-    const handleLogin = (e) => {
+    const navigate = useNavigate();
+
+    const handleLogin = async (e) => {
         e.preventDefault();
         if (username && password) {
-            // Handle login
+            try {
+                const response = await fetch('http://localhost:5000/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                const json = await response.json();
+    
+                if (response.ok) {
+                    // Handle successful login
+                    props.onLogin();
+                    navigate('/products');
+                    console.log(json);
+                } else {
+                    // Handle login error
+                    console.error(json);
+                }
+            } catch (err) {
+                // Handle request error
+                console.error(err);
+            }
         }
     };
 
-    const submitLogin = async () => {
-        try 
-        {
-            localStorage.setItem('Token', json.user.token);
-            localStorage.setItem('accountname', json.user.accountname);
-        }
-        catch (err) {
-            setError(true)
-            console.error(err);
-        }
-    };
-
-    const handleSignup = (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
         if (username && password && confirmPassword && email && password !== confirmPassword) {
             setErrorMessage("Passwords do not match");
@@ -35,11 +48,33 @@ function LoginForm() {
             setErrorMessage("All fields are required")
         } else if (username && password && confirmPassword && email && password === confirmPassword) {
             setErrorMessage("");
-            // Handle signup
+            try {
+                const response = await fetch('http://localhost:5000/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password, email })
+                });
+    
+                const json = await response.json();
+    
+                if (response.ok) {
+                    // Handle successful signup
+                    console.log(json);
+                    setIsLoginPage(true);
+                } else {
+                    // Handle signup error
+                    console.error(json);
+                }
+            } catch (err) {
+                // Handle request error
+                console.error(err);
+            }
         }
     };
 
-    if (isLogin) {
+    if (isLoginPage) {
         return (
             <div>
                 <h1>Login</h1>
@@ -51,7 +86,7 @@ function LoginForm() {
                     <input type="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     <button type="submit">Login</button>
                 </form>
-                <button onClick={() => setIsLogin(false)}>Switch to Signup</button>
+                <button onClick={() => setIsLoginPage(false)}>Switch to Signup</button>
                 </div>
             </div>
         );
@@ -72,7 +107,7 @@ function LoginForm() {
                     <input type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <button type="submit">Signup</button>
                 </form>
-                <button onClick={() => setIsLogin(true)}>Switch to Login</button>
+                <button onClick={() => setIsLoginPage(true)}>Switch to Login</button>
                 </div>
             </div>
         );

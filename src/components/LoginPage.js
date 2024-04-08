@@ -4,11 +4,11 @@ import Footer from './Footer';
 import LoginForm from './LoginForm';
 
 
-function LoginPage() {
+function LoginPage( props ) {
   return (
     <div> 
       <Header />
-      <LoginForm />
+      <LoginForm  onLogin={props.onLogin} />
       <Footer />
     </div>
   );

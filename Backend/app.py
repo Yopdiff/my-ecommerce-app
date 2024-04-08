@@ -107,7 +107,7 @@ def login():
     # Check if the username and password exist in the users list
     for user in users:
         if data.get("username") == user["username"] and data.get("password") == user["password"]:
-            return redirect(url_for('product'))
+            return jsonify({"message": "Login successful"}), 200
 
     return jsonify({"message": "Invalid credentials"}), 401
 
